@@ -13,29 +13,5 @@ export const sql = mysql.createPool({
   database: process.env.DB_DATABASE_NAME,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  // Limite de conecciones
-  connectionLimit: process.env.DB_CONNECTION_LIMIT
+  connectionLimit: process.env.DB_CONNECTION_LIMIT, // Limite de conexiones
 });
-
-/* crear coneccion con : createConnection
-export const sql = mysql.createConnection({
-  host: "localhost",
-  database: "juegos",
-  user: "lautaro",
-  password: "pass",
-});
-*/
-/*
-sql.connect((err) => {
-  const sqlTable = "select juego, id from juegos order by id asc";
-
-  if (err) console.log(err);
-  else {
-    sql.query(sqlTable, (e, r, f) => {
-      if (e) console.log(e);
-      r.forEach(({ id, juego }) => console.log(`${id} - ${juego}`));
-      sql.end((e) => console.log(e));
-    });
-  }
-});
-*/
