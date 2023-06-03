@@ -1,0 +1,20 @@
+{
+  "name": "recordarexpress",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "16.0.3",
+    "ejs": "3.1.9",
+    "express": "4.18.2",
+    "mysql": "2.18.1",
+    "nodemon": "2.0.22"
+  }
+}
