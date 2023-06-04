@@ -5,13 +5,10 @@
     <title>Landing page</title>
   </head>
   <body>
+    <%- include("./parties/head.ejs") %>
     <div style="display: flex; width: 200px; height: 200px">
       <% results.map(({ juego, id, img }) => { %> <% if(!img) { %>
-      <img
-        src="https://gamefaqs.gamespot.com/a/box/0/1/3/435013_front.jpg"
-        alt="a"
-        style="width: auto"
-      />
+      <p>Juego no encontrado</p>
       <% } else { %>
       <div>
         <img src="<%= img %>" alt="img" style="width: 100px" />

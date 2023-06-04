@@ -1,18 +1,19 @@
 // Importar archivos
 import { paginaPrincipal } from "./routers/pagina_principal.js";
 import { __dirname } from "./__dirname.js";
+import { pageNotFound } from "./routers/page_not_found.js";
+import { form } from "./routers/form.js";
 
 // Importar y configurar dotenv
 import * as dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
-import { pageNotFound } from "./routers/page_not_found.js";
 const app = express();
 
 // Configuracion de express;
-app.set(express.json());
-app.set(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Motor de plantillas
 app.set("views", __dirname("views"));
@@ -23,8 +24,9 @@ app.use(express.static(__dirname("public")));
 
 // paginas
 app.use(paginaPrincipal);
+app.use(form);
 app.use(pageNotFound)
 
-app.listen(process.env.PORT, () =>
-  console.log(`server en http://localhost:${process.env.PORT}`)
+app.listen(process.env.PORT ?? 8080, () =>
+  console.log(`server en http://localhost:${process.env.PORT ?? 8080}`)
 );
