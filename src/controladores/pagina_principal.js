@@ -28,3 +28,5 @@ export const deleteElementDB = (req, res) => {
     });
   });
 };
+
+export const updateElementDB = (req, res) => {};

@@ -11,9 +11,9 @@ export const saveInfoInDB = (req, res) => {
   const ordenSQL = `insert into ${DB_DATABASE_NAME} (juego, created_by, img) 
     values 
       (${sql.escape(juego)}, ${created_by}, ${sql.escape(img)})
-     `
-  sql.query(ordenSQL , (err, out) => err ? console.log(err) : console.log("guardado", out))
-  res.redirect("/")
-}
-
-  
+     `;
+  sql.query(ordenSQL, (err, out) =>
+    err ? console.log(err) : console.log("guardado", out)
+  );
+  res.redirect("/");
+};
