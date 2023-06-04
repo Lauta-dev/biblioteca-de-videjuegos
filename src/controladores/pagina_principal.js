@@ -21,9 +21,8 @@ export const deleteElementDB = (req, res) => {
 
   return sql.getConnection((err, connection) => {
     if (err) console.log(err);
-    connection.query(sqlTable, (err, result) => {
+    connection.query(sqlTable, (err) => {
       if (err) console.log(err);
-      console.log(result);
       res.redirect("/");
     });
   });
