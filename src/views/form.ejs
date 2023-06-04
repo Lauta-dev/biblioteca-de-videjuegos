@@ -1,10 +1,14 @@
+<!DOCTYPE html>
 <html>
-  <header>
-    <%- include("./parties/header.ejs") %>
+  <head>
+    <%- include ("./parties/header.ejs") %>
     <title>form</title>
-  </header>
+  </head>
   <body>
-    <%- include("./parties/head.ejs") %>
+    <header>
+      <%- include ("./parties/head.ejs") %>
+    </header>
+
     <h1>Form</h1>
     <form method="POST" action="/form">
       <%- include("./parties/form.ejs") %>

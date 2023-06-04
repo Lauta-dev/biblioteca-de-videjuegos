@@ -1,0 +1,9 @@
+#columna_de_juegos {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+}
+

@@ -3,15 +3,20 @@
   <head>
     <%- include("./parties/header.ejs") %>
     <title>Landing page</title>
+    <link rel="stylesheet"  href="css/div.css">
   </head>
   <body>
-    <%- include("./parties/head.ejs") %>
-    <div style="display: flex; width: 200px; height: 200px">
+    <header id="header"> <%- include("./parties/head.ejs") %> </header>
+    <div id="columna_de_juegos">
       <% results.map(({ juego, id, img }) => { %> <% if(!img) { %>
-      <p>Juego no encontrado</p>
+      <p> Caratula no agreagada </p>
       <% } else { %>
       <div>
-        <img src="<%= img %>" alt="img" style="width: 100px" />
+        <img src="<%= img %>" alt="Caratula no agregada" style="width: 200px" />
+        <form method="POST" action="/d/<%= id %>?_method=DELETE">
+          <button type="submit">Eliinar</button>
+        </form>
+        <p> <%- juego %> </p>
       </div>
       <% } %> <% }) %>
     </div>

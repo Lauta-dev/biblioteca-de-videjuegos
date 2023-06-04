@@ -9,11 +9,13 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import methodOverride from 'method-override'
 const app = express();
 
 // Configuracion de express;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"))
 
 // Motor de plantillas
 app.set("views", __dirname("views"));

@@ -1,0 +1,19 @@
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+#header {
+  margin: 20px;
+}
+
+header > ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+header > ul > li > a {
+  font-size: 25px;
+  font-style: none;
+}
