@@ -12,10 +12,7 @@ export const saveInfoInDB = (req, res) => {
     values 
       (${sql.escape(juego)}, ${created_by}, ${sql.escape(img)})
      `
-  sql.query(ordenSQL , (err, _out) => {
-    if (err) console.log(err)
-    console.log("guardado")
-  })
+  sql.query(ordenSQL , (err, out) => err ? console.log(err) : console.log("guardado", out))
   res.redirect("/")
 }
 
