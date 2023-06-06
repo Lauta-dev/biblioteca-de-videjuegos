@@ -28,11 +28,7 @@ export const deleteElementDB = (req, res) => {
 
   sql.getConnection((err, connection) => {
     if (err) console.log(err);
-<<<<<<< HEAD
-    connection.query(sqlTable, (err) => {
-=======
     connection.query(eliminarElemento, (err, _result) => {
->>>>>>> prueba
       if (err) console.log(err);
       res.redirect("/");
       connection.release();
@@ -79,4 +75,3 @@ export const updateElementDB = (req, res) => {
   });
 };
 
-export const updateElementDB = (req, res) => {};
