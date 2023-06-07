@@ -8,13 +8,21 @@ Projecto donde simulo una biblioteca de juegos.
   <img src="./src/public/img_readme/landing_page.png" alt="das" />
 </div>
 
-> Ya le dare tiempo al diseño
+<div align="center">
+  <h2> Pag para agregar juegos en la biblioteca <h2>
+  <img src="./src/public/img_readme/agregar_juego.png" alt="das" />
+</div>
+
+<div align="center">
+  <h2> Pag para editar la informacion de un juego existentia <h2>
+  <img src="./src/public/img_readme/editar_juego.png" alt="das" />
+</div>
 
 <h2 align="center">Tecnologias usadas</h2>
 
-- javascript (con express)
-- ejs
-- mysql
+- Javascript - Con Express JS
+- EJS - Motor de plantillas
+- MySQL - Base de datos
 
 <h2 align="center">Como usarlo</h2>
 
@@ -90,6 +98,7 @@ Habilitar el servicio para que inicio cuando prenda el equipo (opcional)
 ```bash
 systemctl enable mysql
 ```
+
 Esta es la salida:
 
 ![systemctl_status_mysql_active.png](./src/public/img_readme/systemctl_enable_mysql.png)
@@ -184,7 +193,6 @@ Iniciar mysql
 
 > Se tiene que dar click en el circulo con un simbolo de mas (+)
 
-
 Crear nueva configuracion
 
 ![mysql-workbench](./src/public/img_readme/mysql-workbench_config.png)
@@ -203,4 +211,3 @@ Es posible que cuando creen la conexion le salga una advertencia que diga "mysql
 Los comando para crear tabla (create database nombre_de_la_base_de_datos) y ver bases de datos (show databases) funcionan aqui de igual manera
 
 // FIN
-
