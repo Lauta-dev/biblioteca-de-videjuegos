@@ -1,19 +1,25 @@
-body {
-  background-color: #fff;
-  color: #000;
-}
-
 #header {
-  margin: 20px;
+  padding: 2%;
+  background-color: #865DFF;
+  margin-bottom: 2%;
 }
 
-header > ul {
+#header > ul {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-header > ul > li > a {
-  font-size: 25px;
-  font-style: none;
+#header > ul > li > a {
+  color: #191825;
+  font-size: 121%;
+  text-decoration: none;
+  font-family: sans-serif;
+
+  transition: 0.3s all ease;
+}
+
+#header > ul > li > a:hover {
+  color: #B6EADA;
+  
 }

@@ -14,16 +14,18 @@
       <% } else { %>
       <div>
         <p><%- game %></p>
-        <img
-          src="<%= image %>"
-          alt="Caratula no agregada"
-          style="width: 200px"
-        />
-        <form method="POST" action="/eliminar/<%= uuid_FRONT_END %>?_method=DELETE">
-          <button type="submit">Eliminar</button>
-        </form>
+        <img src="<%= image %>" alt="Caratula no agregada" />
 
-        <a href="/editar/<%= uuid_FRONT_END %>">Editar</a>
+        <div id="boton_editar-crear">
+          <form
+            method="POST"
+            action="/eliminar/<%= uuid_FRONT_END %>?_method=DELETE"
+          >
+            <button type="submit">Eliminar</button>
+          </form>
+
+          <a href="/editar/<%= uuid_FRONT_END %>">Editar</a>
+        </div>
       </div>
       <% } %> <% }) %>
     </div>

@@ -2,15 +2,17 @@
 <html>
   <head>
     <%- include ("./parties/header.ejs") %>
+    <link rel="stylesheet" href="css/form.css" />
     <title>form</title>
   </head>
   <body>
-    <header><%- include ("./parties/head.ejs") %></header>
-
-    <h1>Form</h1>
-
-    <form method="POST" action="/form">
-      <%- include("./parties/form.ejs") %>
-    </form>
+    <header id="header"><%- include ("./parties/head.ejs") %></header>
+    <div id="conteiner">
+      <div >
+        <form method="POST" action="/form">
+          <%- include("./parties/form.ejs") %>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

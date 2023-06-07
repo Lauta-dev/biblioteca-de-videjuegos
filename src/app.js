@@ -23,6 +23,7 @@ app.set("view engine", "ejs");
 
 // Archivos estaticos
 app.use(express.static(__dirname("public")));
+app.use("/editar/css", express.static(__dirname("public/css")));
 
 // paginas
 app.use(paginaPrincipal);

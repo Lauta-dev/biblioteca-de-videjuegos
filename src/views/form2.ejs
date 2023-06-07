@@ -2,15 +2,18 @@
 <html>
   <head>
     <%- include ("./parties/header.ejs") %>
-    <title>form</title>
+    <link rel="stylesheet" href="css/form.css" />
+    <title>Editar elemento</title>
   </head>
   <body>
-    <header><%- include ("./parties/head.ejs") %></header>
+    <header id="header"><%- include ("./parties/head.ejs") %></header>
 
-    <h1>Form</h1>
-
-    <form method="POST" action="/editar/<%= id %>">
-      <%- include("./parties/form2.ejs") %>
-    </form>
+    <div id="conteiner">
+      <div>
+        <form method="POST" action="/editar/<%= id %>">
+          <%- include("./parties/form2.ejs") %>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
