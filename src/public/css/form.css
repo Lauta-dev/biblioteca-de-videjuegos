@@ -17,20 +17,27 @@
   flex-direction: column;
 }
 
-#conteiner > div > form > button {
+.btn-desactivado {
   margin-top: 5%;
   border: none;
   padding: 4%;
-  background-color: #f9d949;
+  background-color: #e4dccf;
+  border: 2px solid;
+  border-radius: 5px;
+  transition: 0.5s all ease;
+}
+
+.btn-activado {
+  margin-top: 5%;
+  border: none;
+  padding: 4%;
+  background-color: #ffed00;
   cursor: pointer;
+
   border: 2px solid;
   border-radius: 5px;
 
   transition: 0.5s all ease;
-}
-
-#conteiner > div > form > button:hover {
-  background-color: #ffed00;
 }
 
 #consola,
@@ -43,6 +50,10 @@
   font-size: 15px;
   padding: 5px;
   outline: none;
+}
+
+.green {
+  border: 2px solid #ffed00;
 }
 
 #inputs_de_registro {
