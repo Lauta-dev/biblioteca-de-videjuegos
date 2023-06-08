@@ -27,7 +27,6 @@ inputGame.addEventListener("input", verificarInputs);
 inputURL.addEventListener("input", verificarInputs);
 inputIDEmployer.addEventListener("input", verificarInputs);
 
-
 // Cuando se hace click el boton activo, se desactiva
 btnEnviar.addEventListener("click", () => {
   btnEnviar.disabled = true;

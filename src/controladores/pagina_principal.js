@@ -24,7 +24,6 @@ export const deleteElementDB = (req, res) => {
   const eliminarElemento = `delete from ${DB_DATABASE_NAME} where uuid_FRONT_END = ${sql.escape(
     id
   )}`;
-  const sqlFile = "./db.sql";
 
   sql.getConnection((err, connection) => {
     if (err) console.log(err);
@@ -38,20 +37,16 @@ export const deleteElementDB = (req, res) => {
 
 export const viewFormUpdate = (req, res) => {
   const { id } = req.params;
-  res.render("form2", { id });
-};
 
-const sqlLogic = (id) => {
-  const selectSQLTable = `select juego from ${DB_DATABASE_NAME} where uuid_FRONT_END = ${sql.escape(
+  const a = `select game from ${DB_DATABASE_NAME} where uuid_FRONT_END = ${sql.escape(
     id
   )}`;
-  return sql.getConnection((err, connection) => {
-    if (err) console.log(err);
 
-    connection.query(selectSQLTable, (err, result) => {
-      if (err) console.log(err);
-      console.log(result);
-      connection.release();
+  sql.getConnection((err, connection) => {
+    if (err) throw new Error(err);
+    connection.query(a, (err, result) => {
+      if (err) throw new Error(err);
+      result.map(({ game }) => res.render("form2", { id, game }));
     });
   });
 };
@@ -74,4 +69,3 @@ export const updateElementDB = (req, res) => {
     });
   });
 };
-

@@ -14,5 +14,5 @@ export const sql = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   connectionLimit: process.env.DB_CONNECTION_LIMIT, // Limite de conexiones
-  multipleStatements: true, // Ejecuta multiples llamadas SQL 
+  multipleStatements: true, // Ejecuta multiples llamadas SQL
 });
