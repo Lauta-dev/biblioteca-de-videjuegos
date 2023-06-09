@@ -10,14 +10,14 @@ export const renderForm = (_req, res) => res.render("form");
 
 export const saveInfoInDB = (req, res) => {
   const { juego, img, created_by } = req.body;
+  console.log(req.body)
   const ordenSQL = `insert into ${DB_DATABASE_NAME} (game, created_by, image, uuid_FRONT_END) 
     values 
       (${sql.escape(juego)}, ${created_by}, ${sql.escape(img)}, ${sql.escape(
     uuidv4()
   )})
      `;
-  sql.query(ordenSQL, (err, out) =>
-    err ? console.log(err) : console.log("guardado", out)
+  sql.query(ordenSQL, (err, _out) =>
+    err ? console.log(err) : res.redirect("/")
   );
-  res.redirect("/");
 };
