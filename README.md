@@ -24,5 +24,5 @@ Projecto donde simulo una biblioteca de juegos.
 - EJS - Motor de plantillas
 - MySQL - Base de datos
 
-[[instalarMySQL]]
+[Instalar mysql](instalarMySQL.md)
 
