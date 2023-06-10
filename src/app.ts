@@ -1,8 +1,9 @@
 // Importar archivos
-import { paginaPrincipal } from "./routers/pagina_principal.js";
-import { __dirname } from "./__dirname.js";
-import { pageNotFound } from "./routers/page_not_found.js";
-import { form } from "./routers/form.js";
+import { paginaPrincipal } from "./routers/pagina_principal";
+import { __dirname } from "./__dirname";
+import { pageNotFound } from "./routers/page_not_found";
+import { form } from "./routers/form";
+
 import methodOverride from "method-override";
 
 // Importar y configurar dotenv

@@ -1,5 +1,10 @@
 import express from "express";
-import {createConnectionDB, deleteElementDB, viewFormUpdate, updateElementDB } from "../controladores/pagina_principal.js";
+import {
+  createConnectionDB,
+  deleteElementDB,
+  viewFormUpdate,
+  updateElementDB,
+} from "../controladores/pagina_principal";
 export const paginaPrincipal = express.Router();
 
 paginaPrincipal.get("/", createConnectionDB);
