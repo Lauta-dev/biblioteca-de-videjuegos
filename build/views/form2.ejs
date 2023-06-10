@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ("./parties/header.ejs") %>
+    <link rel="stylesheet" href="css/form.css" />
+    <title>Editar elemento</title>
+  </head>
+  <body>
+    <header id="header"><%- include ("./parties/head.ejs") %></header>
+
+    <div id="conteiner">
+      <div>
+        <h1 id="titulo"><%= game %></h1>
+        <form method="POST" action="/editar/<%= id %>">
+          <%- include("./parties/form2.ejs") %>
+        </form>
+      </div>
+    </div>
+    <script src="js/editar-elemento.js"></script>
+  </body>
+</html>

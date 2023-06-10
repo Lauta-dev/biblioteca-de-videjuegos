@@ -6,4 +6,4 @@ import { join, dirname } from "path";
 const f = __filename;
 const d = dirname(f); // __dirname
 
-export const __dirname = (ruta: string) => join(d, ruta);
+export const dName = (ruta: string) => join(d, ruta);

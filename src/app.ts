@@ -1,6 +1,6 @@
 // Importar archivos
 import { paginaPrincipal } from "./routers/pagina_principal";
-import { __dirname } from "./__dirname";
+import { dName } from "./__dirname";
 import { pageNotFound } from "./routers/page_not_found";
 import { form } from "./routers/form";
 
@@ -19,12 +19,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 // Motor de plantillas
-app.set("views", __dirname("views"));
+app.set("views", dName("views"));
 app.set("view engine", "ejs");
 
 // Archivos estaticos
-app.use(express.static(__dirname("public")));
-app.use("/editar/", express.static(__dirname("public")));
+app.use(express.static(dName("public")));
+app.use("/editar/", express.static(dName("public")));
 
 // paginas
 app.use(paginaPrincipal);
