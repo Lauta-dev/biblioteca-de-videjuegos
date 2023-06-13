@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.viewFormUpdate = exports.deleteElementDB = exports.createConnectionDB = void 0;
+exports.updateElementDB = exports.viewFormUpdate = exports.deleteElementDB = exports.createConnectionDB = void 0;
 const db_1 = require("../db");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
@@ -72,7 +72,24 @@ const deleteElementDB = (req, res) => __awaiter(void 0, void 0, void 0, function
 exports.deleteElementDB = deleteElementDB;
 const viewFormUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const uuid_front_end = req.params.uuid_front_end.toString();
-    console.log(uuid_front_end);
-    res.render("form2", { game: req.body.game });
+    const { data, error } = yield db_1.supabase
+        .from("juegos")
+        .select()
+        .eq("uuid_front_end", uuid_front_end)
+        .limit(1);
+    if (data) {
+        data.map(({ game }) => res.render("form2", { game, uuid_front_end }));
+    }
 });
 exports.viewFormUpdate = viewFormUpdate;
+const updateElementDB = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { game, image, uuid_front_end } = req.body;
+    console.log(req.body);
+    const { data, error } = yield db_1.supabase
+        .from("juegos")
+        .update({ game: game, image: image })
+        .eq("uuid_front_end", uuid_front_end);
+    console.log(data);
+    error ? console.log(`Hubo un error ${error}`) : res.redirect("/");
+});
+exports.updateElementDB = updateElementDB;

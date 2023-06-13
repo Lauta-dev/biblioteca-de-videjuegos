@@ -42,6 +42,30 @@ export const deleteElementDB = async (req: Request, res: Response) => {
 
 export const viewFormUpdate = async (req: Request, res: Response) => {
   const uuid_front_end = req.params.uuid_front_end.toString();
-  console.log(uuid_front_end);
-  res.render("form2", { game: req.body.game, uuid_front_end });
+
+  const { data, error } = await supabase
+    .from("juegos")
+    .select()
+    .eq("uuid_front_end", uuid_front_end)
+    .limit(1);
+
+  if (data) {
+    data.map(({ game }: { game: string }) =>
+      res.render("form2", { game, uuid_front_end })
+    );
+  }
+};
+
+export const updateElementDB = async (req: Request, res: Response) => {
+  const { game, image, uuid_front_end } = req.body;
+  console.log(req.body);
+
+  const { data, error } = await supabase
+    .from("juegos")
+    .update({ game: game, image: image })
+    .eq("uuid_front_end", uuid_front_end);
+
+  console.log(data);
+
+  error ? console.log(`Hubo un error ${error}`) : res.redirect("/");
 };

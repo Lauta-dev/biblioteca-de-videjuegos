@@ -10,3 +10,4 @@ exports.paginaPrincipal = express_1.default.Router();
 exports.paginaPrincipal.get("/", pagina_principal_1.createConnectionDB);
 exports.paginaPrincipal.delete("/eliminar/:uuid_front_end", pagina_principal_1.deleteElementDB);
 exports.paginaPrincipal.get("/editar/:uuid_front_end", pagina_principal_1.viewFormUpdate);
+exports.paginaPrincipal.post("/editar/:uuid_front_end", pagina_principal_1.updateElementDB);
