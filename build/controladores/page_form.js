@@ -22,22 +22,28 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.saveInfoInDB = exports.renderForm = void 0;
-const db_js_1 = require("../db.js");
 const dotenv = __importStar(require("dotenv"));
 const uuid_1 = require("uuid");
+const db_1 = require("../db");
 dotenv.config();
-const DB_DATABASE_NAME = process.env.DB_DATABASE_NAME;
 const renderForm = (_req, res) => res.render("form");
 exports.renderForm = renderForm;
-const saveInfoInDB = (req, res) => {
-    const { juego, img, created_by } = req.body;
-    console.log(req.body);
-    const ordenSQL = `insert into ${DB_DATABASE_NAME} (game, created_by, image, uuid_FRONT_END) 
-    values 
-      (${db_js_1.sql.escape(juego)}, ${created_by}, ${db_js_1.sql.escape(img)}, ${db_js_1.sql.escape((0, uuid_1.v4)())})
-     `;
-    db_js_1.sql.query(ordenSQL, (err, _out) => err ? console.log(err) : res.redirect("/"));
-};
+const saveInfoInDB = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { game, image, created_by } = req.body;
+    const body = { game, image, created_by, uuid_front_end: (0, uuid_1.v4)() };
+    const { data, error } = yield db_1.supabase.from("juegos").insert([body]);
+    res.redirect("/");
+    return data;
+});
 exports.saveInfoInDB = saveInfoInDB;

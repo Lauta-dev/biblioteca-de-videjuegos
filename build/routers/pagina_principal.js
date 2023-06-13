@@ -8,6 +8,4 @@ const express_1 = __importDefault(require("express"));
 const pagina_principal_1 = require("../controladores/pagina_principal");
 exports.paginaPrincipal = express_1.default.Router();
 exports.paginaPrincipal.get("/", pagina_principal_1.createConnectionDB);
-exports.paginaPrincipal.delete("/eliminar/:id", pagina_principal_1.deleteElementDB);
-exports.paginaPrincipal.get("/editar/:id", pagina_principal_1.viewFormUpdate);
-exports.paginaPrincipal.post("/editar/:id", pagina_principal_1.updateElementDB);
+exports.paginaPrincipal.delete("/eliminar/:uuid_front_end", pagina_principal_1.deleteElementDB);

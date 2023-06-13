@@ -22,68 +22,49 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateElementDB = exports.viewFormUpdate = exports.deleteElementDB = exports.createConnectionDB = void 0;
-const db_js_1 = require("../db.js");
+exports.deleteElementDB = exports.createConnectionDB = void 0;
+const db_1 = require("../db");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-const DB_DATABASE_NAME = process.env.DB_DATABASE_NAME;
-const createConnectionDB = (_req, res) => {
-    const sqlSelectTable = `select * from ${DB_DATABASE_NAME}`;
-    return db_js_1.sql.getConnection((err, connection) => {
-        if (err)
-            console.log(err);
-        connection.query(sqlSelectTable, (err, results) => {
-            if (err)
-                console.log(`Papu :( ${err}`);
-            res.render("pagina-principal", { results });
-            connection.release();
-        });
-    });
-};
+const createConnectionDB = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { data: juegos, error } = yield db_1.supabase.from("juegos").select("*");
+    error ? console.log(error) : res.render("pagina-principal", { juegos });
+});
 exports.createConnectionDB = createConnectionDB;
-const deleteElementDB = (req, res) => {
-    const { id } = req.params;
-    const sqlDeleteTable = `delete from ${DB_DATABASE_NAME} where uuid_FRONT_END = ${db_js_1.sql.escape(id)}`;
-    db_js_1.sql.getConnection((err, connection) => {
-        if (err)
-            console.log(err);
-        connection.query(sqlDeleteTable, (err, _result) => {
-            if (err)
-                console.log(err);
-            res.redirect("/");
-            connection.release();
-        });
-    });
-};
+const deleteElementDB = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const params = req.params.uuid_front_end.toString();
+    const { data, error } = yield db_1.supabase
+        .from("juegos")
+        .select()
+        .eq("uuid_front_end", params)
+        .limit(1);
+    if (error) {
+        console.log(`Hubo un error ${error}`);
+        return;
+    }
+    console.log(data);
+    const { data: deletedData, error: deleteError } = yield db_1.supabase
+        .from("juegos")
+        .delete()
+        .match({ params });
+    if (deleteError) {
+        console.log(`Hubo un error ${exports.deleteElementDB}`);
+        res.redirect("/");
+        return;
+    }
+    console.log("Registro eliminado con exito");
+    console.log(deletedData);
+    console.log(params);
+    res.redirect("/");
+});
 exports.deleteElementDB = deleteElementDB;
-const viewFormUpdate = (req, res) => {
-    const { id } = req.params;
-    const a = `select game from ${DB_DATABASE_NAME} where uuid_FRONT_END = ${db_js_1.sql.escape(id)}`;
-    db_js_1.sql.getConnection((err, connection) => {
-        if (err)
-            console.log(err);
-        connection.query(a, (err, result) => {
-            if (err)
-                console.log(err);
-            result.map(({ game }) => res.render("form2", { id, game }));
-        });
-    });
-};
-exports.viewFormUpdate = viewFormUpdate;
-const updateElementDB = (req, res) => {
-    const { juego, img } = req.body;
-    const { id } = req.params;
-    const sqlUpdateTable = `update ${DB_DATABASE_NAME} set game = ${db_js_1.sql.escape(juego)}, image = ${db_js_1.sql.escape(img)} where uuid_FRONT_END = ${db_js_1.sql.escape(id)}`;
-    db_js_1.sql.getConnection((err, connection) => {
-        if (err)
-            console.log(err);
-        connection.query(sqlUpdateTable, (err, _result) => {
-            if (err)
-                console.log(err);
-            res.redirect("/");
-            connection.release();
-        });
-    });
-};
-exports.updateElementDB = updateElementDB;
