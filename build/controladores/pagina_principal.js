@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteElementDB = exports.createConnectionDB = void 0;
+exports.viewFormUpdate = exports.deleteElementDB = exports.createConnectionDB = void 0;
 const db_1 = require("../db");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
@@ -42,29 +42,37 @@ const createConnectionDB = (_req, res) => __awaiter(void 0, void 0, void 0, func
 });
 exports.createConnectionDB = createConnectionDB;
 const deleteElementDB = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const params = req.params.uuid_front_end.toString();
+    const uuid_front_end = req.params.uuid_front_end.toString();
     const { data, error } = yield db_1.supabase
         .from("juegos")
         .select()
-        .eq("uuid_front_end", params)
+        .eq("uuid_front_end", uuid_front_end)
         .limit(1);
     if (error) {
         console.log(`Hubo un error ${error}`);
         return;
     }
-    console.log(data);
-    const { data: deletedData, error: deleteError } = yield db_1.supabase
-        .from("juegos")
-        .delete()
-        .match({ params });
-    if (deleteError) {
-        console.log(`Hubo un error ${exports.deleteElementDB}`);
+    if (data.length > 0) {
+        const { data: deletedData, error: deleteError } = yield db_1.supabase
+            .from("juegos")
+            .delete()
+            .match({ uuid_front_end });
+        if (deleteError) {
+            console.log(`Hubo un error ${exports.deleteElementDB}`);
+            res.redirect("/");
+            return;
+        }
+        console.log("Registro eliminado con exito");
         res.redirect("/");
-        return;
     }
-    console.log("Registro eliminado con exito");
-    console.log(deletedData);
-    console.log(params);
-    res.redirect("/");
+    else {
+        console.log("Registro no encontrado");
+    }
 });
 exports.deleteElementDB = deleteElementDB;
+const viewFormUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const uuid_front_end = req.params.uuid_front_end.toString();
+    console.log(uuid_front_end);
+    res.render("form2", { game: req.body.game });
+});
+exports.viewFormUpdate = viewFormUpdate;

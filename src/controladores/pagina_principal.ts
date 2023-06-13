@@ -22,8 +22,6 @@ export const deleteElementDB = async (req: Request, res: Response) => {
     console.log(`Hubo un error ${error}`);
     return;
   }
-  console.log(data);
-
   if (data.length > 0) {
     const { data: deletedData, error: deleteError } = await supabase
       .from("juegos")
@@ -35,8 +33,15 @@ export const deleteElementDB = async (req: Request, res: Response) => {
       res.redirect("/");
       return;
     }
+    console.log("Registro eliminado con exito");
+    res.redirect("/");
+  } else {
+    console.log("Registro no encontrado");
   }
+};
 
-  console.log("Registro eliminado con exito");
-  res.redirect("/");
+export const viewFormUpdate = async (req: Request, res: Response) => {
+  const uuid_front_end = req.params.uuid_front_end.toString();
+  console.log(uuid_front_end);
+  res.render("form2", { game: req.body.game, uuid_front_end });
 };
