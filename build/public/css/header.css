@@ -1,0 +1,30 @@
+#header {
+  padding: 2%;
+  background-color: #865dff;
+  margin-bottom: 2%;
+}
+
+#header > ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#header > ul > li > a {
+  color: #191825;
+  font-size: 121%;
+  text-decoration: none;
+  font-family: sans-serif;
+
+  transition: 0.3s all ease;
+}
+
+#header > ul > li > a:hover {
+  color: #b6eada;
+}
+
+#titulo {
+  color: #000;
+  text-align: center;
+  padding: 10px;
+}
