@@ -1,9 +1,6 @@
 import { Response, Request } from "express";
 import { supabase } from "../db";
 
-import * as dotenv from "dotenv";
-dotenv.config();
-
 export const createConnectionDB = async (_req: Request, res: Response) => {
   const { data: juegos, error } = await supabase.from("juegos").select("*");
   error ? console.log(error) : res.render("pagina-principal", { juegos });

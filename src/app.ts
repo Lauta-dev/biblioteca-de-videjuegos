@@ -7,9 +7,6 @@ import { form } from "./routers/form";
 import methodOverride from "method-override";
 
 // Importar y configurar dotenv
-import * as dotenv from "dotenv";
-dotenv.config();
-
 import express from "express";
 const app = express();
 

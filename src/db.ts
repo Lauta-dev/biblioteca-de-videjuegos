@@ -1,4 +1,3 @@
-require("dotenv").config();
 import { createClient } from "@supabase/supabase-js";
 // Configuracion para supabase
 const opcionesSupabase = {

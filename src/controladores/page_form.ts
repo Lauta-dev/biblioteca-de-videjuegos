@@ -1,9 +1,7 @@
 // import { sql } from "../db.js";
-import * as dotenv from "dotenv";
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../db";
-dotenv.config();
 
 export const renderForm = (_req: Request, res: Response) => res.render("form");
 export const saveInfoInDB = async (req: Request, res: Response) => {

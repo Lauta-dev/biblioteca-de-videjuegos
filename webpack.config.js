@@ -1,8 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 require("dotenv").config();
 
 module.exports = {
+  externalsPresets: { node: true },
+  externals: [nodeExternals()],
   entry: "./src/app.ts",
   output: {
     filename: "bundle.js",
@@ -14,9 +18,10 @@ module.exports = {
     __dirname: false,
   },
   plugins: [
+    new NodePolyfillPlugin(),
     new webpack.EnvironmentPlugin({
-      SUPABASE_API_KEY: toString(process.env.SUPABASE_API_KEY),
-      SUPABASE_URL: toString(process.env.SUPABASE_URL),
+      DB_SUPABASE_URL: toString(process.env.DB_SUPABASE_URL),
+      DB_SUPABASE_KEY: toString(process.env.DB_SUPABASE_KEY),
     }),
   ],
   resolve: {
